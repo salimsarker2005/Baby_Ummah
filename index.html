@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤ আমার হৃদয়ের রাজকুমারী ❤</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #ff2e63;
+            --secondary: #ff8fab;
+            --dark: #2a0a22;
+            --light: #fff9fb;
+            --gold: #ffd700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+        
+        .universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
+        }
+        
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.1),
+                        0 0 0 8px rgba(255,255,255,0.1),
+                        0 0 20px rgba(255,255,255,1);
+            animation: shooting 3s linear infinite;
+        }
+        
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,1), transparent);
+        }
+        
+        .magic-container {
+            position: relative;
+            width: 95%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(255, 46, 99, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 10;
+            transform-style: preserve-3d;
+            transform: rotateY(20deg);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            animation: containerAppear 1.5s forwards 0.5s;
+        }
+        
+        .magic-container:hover {
+            transform: rotateY(5deg) translateY(-10px);
+            box-shadow: 0 0 70px rgba(255, 46, 99, 0.7);
+        }
+        
+        h1 {
+            color: transparent;
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--gold));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradient 3s linear infinite;
+            text-shadow: 0 0 20px rgba(255, 46, 99, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            border-radius: 100%;
+        }
+        
+        .her-name {
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .her-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+        
+        .her-name:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .message-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 46, 99, 0.05), transparent);
+            z-index: -1;
+        }
+        
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 15px 0;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .message::first-letter {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .heart-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 30px auto;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+        
+        .heart-container:hover {
+            transform: scale(1.1) rotateY(10deg);
+        }
+        
+        .heart {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            clip-path: path('M10,30 Q10,0 50,0 Q90,0 90,30 Q90,60 50,90 Q10,60 10,30 Z');
+            animation: heartBeat 1.5s ease infinite;
+            box-shadow: 0 0 50px var(--primary);
+            transition: all 0.3s;
+            transform-style: preserve-3d;
+        }
+        
+        .heart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary);
+            clip-path: path('M10,30 Q10,0 50,0 Q90,0 90,30 Q90,60 50,90 Q10,60 10,30 Z');
+            transform: scale(0.9);
+            opacity: 0.7;
+            animation: innerBeat 1.5s ease infinite;
+        }
+        
+        .heart::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            clip-path: path('M10,30 Q10,0 50,0 Q90,0 90,30 Q90,60 50,90 Q10,60 10,30 Z');
+            transform: scale(0.8);
+            opacity: 0.4;
+            animation: shine 3s ease infinite;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .magic-btn {
+            position: relative;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 600;
+            letter-spacing: 1px;
+            overflow: hidden;
+            z-index: 1;
+            min-width: 180px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+        }
+        
+        .magic-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: -1;
+        }
+        
+        .magic-btn:hover::before {
+            transform: translateX(100%);
+        }
+        
+        #yesBtn {
+            background: linear-gradient(45deg, var(--primary), #ff5c8a);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        #yesBtn:hover {
+            transform: translateY(-5px) rotateY(10deg);
+            box-shadow: 0 10px 25px rgba(255, 46, 99, 0.6);
+        }
+        
+        #noBtn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        #noBtn:hover {
+            transform: translateY(-5px) rotateY(-10deg);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        #memoriesBtn {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            border: 2px solid #6a11cb;
+        }
+        
+        #memoriesBtn:hover {
+            transform: translateY(-5px) rotateX(10deg);
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.6);
+        }
+        
+        #promiseBtn {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            color: white;
+            border: 2px solid #11998e;
+        }
+        
+        #promiseBtn:hover {
+            transform: translateY(-5px) rotateX(-10deg);
+            box-shadow: 0 10px 25px rgba(17, 153, 142, 0.6);
+        }
+        
+        #kissBtn {
+            background: linear-gradient(45deg, #fc4a1a, #f7b733);
+            color: white;
+            border: 2px solid #fc4a1a;
+        }
+        
+        #kissBtn:hover {
+            transform: translateY(-5px) rotateZ(10deg);
+            box-shadow: 0 10px 25px rgba(252, 74, 26, 0.6);
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0;
+            font-size: var(--size);
+            color: var(--color);
+            animation: float var(--duration) linear infinite;
+            filter: drop-shadow(0 0 5px currentColor);
+            z-index: -1;
+        }
+        
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(42, 10, 34, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .success-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .success-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 0 50px rgba(255, 46, 99, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transform: scale(0.8) rotateY(30deg);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .success-overlay.active .success-content {
+            transform: scale(1) rotateY(0);
+            opacity: 1;
+        }
+        
+        .success-overlay h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s linear infinite;
+        }
+        
+        .success-overlay p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .big-heart {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            position: relative;
+        }
+        
+        .big-heart .heart {
+            width: 100%;
+            height: 100%;
+            animation: bigHeartBeat 1.5s ease infinite;
+            box-shadow: 0 0 80px var(--primary);
+        }
+        
+        .celebration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        @keyframes containerAppear {
+            to {
+                opacity: 1;
+                transform: rotateY(0);
+            }
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(5deg); }
+            50% { transform: scale(1.05) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        @keyframes bigHeartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        @keyframes innerBeat {
+            0%, 100% { transform: scale(0.9); opacity: 0.7; }
+            50% { transform: scale(0.8); opacity: 0.9; }
+        }
+        
+        @keyframes shine {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        
+        @keyframes float {
+            0% { 
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            100% { 
+                transform: translateY(-100px) rotate(360deg) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes shooting {
+            0% { 
+                transform: translateX(0) translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            70% { opacity: 1; }
+            100% { 
+                transform: translateX(1000px) translateY(-300px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .message {
+                font-size: 1.1rem;
+            }
+            
+            .heart-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .magic-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .success-overlay h2 {
+                font-size: 2.5rem;
+            }
+            
+            .success-overlay p {
+                font-size: 1.1rem;
+            }
+            
+            .big-heart {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="universe" id="universe"></div>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <div class="magic-container">
+        <h1>প্রিয় <span class="her-name" id="herName">[তার নাম]</span></h1>
+        
+        <div class="message-box">
+            <p class="message">তোমার হাসি আমার সমস্ত আকাশ আলোকিত করে...</p>
+            <p class="message">তোমার চোখে আমি খুঁজে পাই আমার স্বপ্নের প্রতিফলন</p>
+            <p class="message">তোমার স্পর্শে জেগে ওঠে হৃদয়ের সবচেয়ে সুন্দর অনুভূতি</p>
+            <p class="message">আমি কি পারি তোমার জীবনের প্রতিটি মুহূর্তের সাক্ষী হতে?</p>
+        </div>
+        
+        <div class="heart-container" id="heartBtn">
+            <div class="heart"></div>
+        </div>
+        
+        <div class="button-group">
+            <button class="magic-btn" id="yesBtn">হ্যাঁ, আমি রাজি! ❤</button>
+            <button class="magic-btn" id="noBtn">না, এখন নয়</button>
+            <button class="magic-btn" id="memoriesBtn">আমাদের স্মৃতি</button>
+            <button class="magic-btn" id="promiseBtn">আমার প্রতিশ্রুতি</button>
+            <button class="magic-btn" id="kissBtn">একটা চুমু দিবে? 💋</button>
+        </div>
+    </div>
+    
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-content">
+            <h2>ধন্যবাদ প্রিয়তমা!</h2>
+            <p>তুমি আমার জীবনের সবচেয়ে সুন্দর সিদ্ধান্ত নিয়েছ ❤</p>
+            <p>আমি প্রতিজ্ঞা করি, তোমাকে কখনো দুঃখ দেব না। তোমার হাসিই আমার সবচেয়ে বড় পাওয়া।</p>
+            <div class="big-heart">
+                <div class="heart"></div>
+            </div>
+            <div class="celebration" id="celebration"></div>
+        </div>
+    </div>
+
+    <script>
+        // Set her name
+        let herName = prompt("তোমার প্রিয়তমার নাম কি?", "");
+        document.getElementById('herName').textContent = herName || "প্রিয়";
+        
+        // Create stars in universe
+        function createStars() {
+            const universe = document.getElementById('universe');
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.width = (Math.random() * 2 + 1) + 'px';
+            star.style.height = star.style.width;
+            star.style.opacity = Math.random();
+            star.style.animation = `twinkle ${5 + Math.random() * 10}s infinite alternate`;
+            universe.appendChild(star);
+        }
+        
+        // Create shooting stars
+        function createShootingStar() {
+            const universe = document.getElementById('universe');
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animation = `shooting ${2 + Math.random() * 3}s linear infinite`;
+            star.style.animationDelay = Math.random() * 5 + 's';
+            universe.appendChild(star);
+            
+            setTimeout(() => {
+                star.remove();
+            }, 5000);
+        }
+        
+        // Create initial stars
+        for(let i=0; i<200; i++) {
+            createStars();
+        }
+        
+        // Create shooting stars periodically
+        setInterval(createShootingStar, 1000);
+        
+        // Create floating elements
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const types = ['❤', '✨', '🌟', '💫', '💖', '🥰', '💋'];
+            const colors = ['#ff2e63', '#ff8fab', '#ffd700', '#ffffff', '#ffb8d1'];
+            
+            const element = document.createElement('div');
+            element.className = 'floating-element';
+            element.innerHTML = types[Math.floor(Math.random() * types.length)];
+            element.style.left = Math.random() * 100 + 'vw';
+            element.style.setProperty('--duration', (5 + Math.random() * 15) + 's');
+            element.style.setProperty('--size', (1 + Math.random() * 3) + 'rem');
+            element.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+            element.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 20000);
+        }
+        
+        // Create initial floating elements
+        for(let i=0; i<30; i++) {
+            setTimeout(() => {
+                createFloatingElements();
+            }, i * 300);
+        }
+        
+        // Continue creating floating elements
+        setInterval(createFloatingElements, 500);
+        
+        // Heart button effect
+        document.getElementById('heartBtn').addEventListener('click', function() {
+            // Create heart explosion
+            for(let i=0; i<30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'floating-element';
+                    heart.innerHTML = '❤';
+                    heart.style.left = '50%';
+                    heart.style.top = '50%';
+                    heart.style.setProperty('--duration', (1 + Math.random() * 3) + 's');
+                    heart.style.setProperty('--size', (1 + Math.random() * 4) + 'rem');
+                    heart.style.setProperty('--color', '#ff2e63');
+                    document.getElementById('floatingElements').appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 4000);
+                }, i * 100);
+            }
+        });
+        
+        // Yes button action
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            document.getElementById('successOverlay').classList.add('active');
+            createCelebration();
+            
+            // Create big explosion
+            for(let i=0; i<150; i++) {
+                setTimeout(() => {
+                    createFloatingElements();
+                }, i * 50);
+            }
+        });
+        
+        // No button action (intelligent button)
+        document.getElementById('noBtn').addEventListener('click', function() {
+            const messages = [
+                "নিশ্চিত?", 
+                "আসলেই না?", 
+                "একটু চিন্তা করে দেখো...", 
+                "আমি তোমাকে সত্যিই ভালোবাসি!", 
+                "প্লিজ একবার ভাবো...", 
+                "হ্যাঁ বলো না প্লিজ!",
+                "আমি তোমার জন্য অপেক্ষা করব!"
+            ];
+            
+            this.textContent = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Move button randomly
+            const container = document.querySelector('.magic-container');
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = this.getBoundingClientRect();
+            
+            const maxX = containerRect.width - buttonRect.width;
+            const maxY = containerRect.height - buttonRect.height;
+            
+            this.style.position = 'absolute';
+            this.style.left = Math.random() * maxX + 'px';
+            this.style.top = Math.random() * maxY + 'px';
+            
+            // Create sad effect
+            for(let i=0; i<10; i++) {
+                setTimeout(() => {
+                    const tear = document.createElement('div');
+                    tear.className = 'floating-element';
+                    tear.innerHTML = '😢';
+                    tear.style.left = (50 + (Math.random() * 30 - 15)) + '%';
+                    tear.style.top = '60%';
+                    tear.style.setProperty('--duration', (1 + Math.random() * 2) + 's');
+                    tear.style.setProperty('--size', '1.5rem');
+                    tear.style.setProperty('--color', '#4fc3f7');
+                    document.getElementById('floatingElements').appendChild(tear);
+                    
+                    setTimeout(() => {
+                        tear.remove();
+                    }, 3000);
+                }, i * 200);
+            }
+        });
+        
+        // Memories button action
+        document.getElementById('memoriesBtn').addEventListener('click', function() {
+            alert("আমাদের প্রতিটি স্মৃতি আমার হৃদয়ে গাঁথা। প্রতিটি মুহূর্তই আমার কাছে বিশেষ ❤");
+            
+            // Create memory effect
+            for(let i=0; i<20; i++) {
+                setTimeout(() => {
+                    const memory = document.createElement('div');
+                    memory.className = 'floating-element';
+                    memory.innerHTML = ['📸', '🎉', '💑', '🌹', '🥳'][Math.floor(Math.random() * 5)];
+                    memory.style.left = Math.random() * 100 + 'vw';
+                    memory.style.top = Math.random() * 100 + 'vh';
+                    memory.style.setProperty('--duration', (3 + Math.random() * 5) + 's');
+                    memory.style.setProperty('--size', (1 + Math.random() * 3) + 'rem');
+                    memory.style.setProperty('--color', '#ff8fab');
+                    document.getElementById('floatingElements').appendChild(memory);
+                    
+                    setTimeout(() => {
+                        memory.remove();
+                    }, 8000);
+                }, i * 150);
+            }
+        });
+        
+        // Promise button action
+        document.getElementById('promiseBtn').addEventListener('click', function() {
+            alert("আমি প্রতিজ্ঞা করি, তোমাকে কখনো কষ্ট দেব না। তোমার হাসি আমার সবচেয়ে বড় অর্জন ❤");
+            
+            // Create promise effect
+            for(let i=0; i<15; i++) {
+                setTimeout(() => {
+                    const promise = document.createElement('div');
+                    promise.className = 'floating-element';
+                    promise.innerHTML = ['🤝', '💍', '💞', '🤲', '🙏'][Math.floor(Math.random() * 5)];
+                    promise.style.left = Math.random() * 100 + 'vw';
+                    promise.style.top = Math.random() * 100 + 'vh';
+                    promise.style.setProperty('--duration', (2 + Math.random() * 4) + 's');
+                    promise.style.setProperty('--size', (1 + Math.random() * 2) + 'rem');
+                    promise.style.setProperty('--color', '#38ef7d');
+                    document.getElementById('floatingElements').appendChild(promise);
+                    
+                    setTimeout(() => {
+                        promise.remove();
+                    }, 6000);
+                }, i * 200);
+            }
+        });
+        
+        // Kiss button action
+        document.getElementById('kissBtn').addEventListener('click', function() {
+            alert("💋 তোমাকে লক্ষ চুমু! প্রতিটি চুমুই আমার হৃদয় থেকে 💋");
+            
+            // Create kiss effect
+            for(let i=0; i<25; i++) {
+                setTimeout(() => {
+                    const kiss = document.createElement('div');
+                    kiss.className = 'floating-element';
+                    kiss.innerHTML = '💋';
+                    kiss.style.left = Math.random() * 100 + 'vw';
+                    kiss.style.top = Math.random() * 100 + 'vh';
+                    kiss.style.setProperty('--duration', (1 + Math.random() * 3) + 's');
+                    kiss.style.setProperty('--size', (1 + Math.random() * 2) + 'rem');
+                    kiss.style.setProperty('--color', '#fc4a1a');
+                    document.getElementById('floatingElements').appendChild(kiss);
+                    
+                    setTimeout(() => {
+                        kiss.remove();
+                    }, 4000);
+                }, i * 100);
+            }
+        });
+        
+        // Create celebration effect
+        function createCelebration() {
+            const container = document.getElementById('celebration');
+            const types = ['🎉', '🎊', '❤', '💖', '🥳', '🎈', '✨'];
+            const colors = ['#ff2e63', '#ff8fab', '#ffd700', '#ffffff', '#4fc3f7', '#38ef7d'];
+            
+            for(let i=0; i<200; i++) {
+                setTimeout(() => {
+                    const element = document.createElement('div');
+                    element.style.position = 'absolute';
+                    element.style.left = Math.random() * 100 + 'vw';
+                    element.style.top = Math.random() * 100 + 'vh';
+                    element.style.fontSize = (1 + Math.random() * 3) + 'rem';
+                    element.style.opacity = '0';
+                    element.innerHTML = types[Math.floor(Math.random() * types.length)];
+                    element.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    element.style.animation = `celebrate ${1 + Math.random() * 2}s forwards ${i * 20}ms`;
+                    element.style.transform = 'translateY(0) rotate(0deg) scale(0)';
+                    container.appendChild(element);
+                    
+                    setTimeout(() => {
+                        element.remove();
+                    }, 3000);
+                }, i * 20);
+            }
+            
+            // Add CSS for celebration animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes celebrate {
+                    0% { 
+                        transform: translateY(0) rotate(0deg) scale(0);
+                        opacity: 0;
+                    }
+                    50% { 
+                        transform: translateY(-100px) rotate(180deg) scale(1);
+                        opacity: 1;
+                    }
+                    100% { 
+                        transform: translateY(-200px) rotate(360deg) scale(0);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Rotating messages
+        const romanticMessages = [
+            "তোমার একটি হাসির জন্য আমি সারাজীবন অপেক্ষা করতে পারি",
+            "তুমি আমার স্বপ্নের সেই মানুষ যাকে খুঁজে বেড়াচ্ছিলাম সারাজীবন",
+            "তোমার ভালোবাসা ছাড়া আমার জীবন অসম্পূর্ণ",
+            "তোমাকে পেয়ে আমি ধন্য, তুমি আমার সবচেয়ে বড় পাওয়া",
+            "আমার হৃদয়ের প্রতিটি স্পন্দনে তোমার নাম",
+            "তুমি আমার জীবনের সবচেয়ে সুন্দর অধ্যায়",
+            "তোমার সাথে বসবাসই আমার সবচেয়ে বড় স্বপ্ন"
+        ];
+        
+        // Change message every 5 seconds
+        let currentMessage = 0;
+        setInterval(() => {
+            const messages = document.querySelectorAll('.message');
+            
+            messages.forEach((msg, index) => {
+                setTimeout(() => {
+                    msg.style.animation = 'fadeOut 0.5s forwards';
+                    
+                    setTimeout(() => {
+                        if(index === 2) { // Change only the 3rd line
+                            msg.textContent = romanticMessages[currentMessage];
+                            currentMessage = (currentMessage + 1) % romanticMessages.length;
+                        }
+                        
+                        msg.style.animation = 'fadeIn 0.5s forwards';
+                    }, 500);
+                }, index * 300);
+            });
+        }, 5000);
+        
+        // Add fade animations
+        const fadeStyle = document.createElement('style');
+        fadeStyle.textContent = `
+            @keyframes fadeOut {
+                to { 
+                    opacity: 0; 
+                    transform: translateY(-10px) rotateX(90deg);
+                }
+            }
+            @keyframes fadeIn {
+                from { 
+                    opacity: 0; 
+                    transform: translateY(10px) rotateX(-90deg);
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0) rotateX(0);
+                }
+            }
+        `;
+        document.head.appendChild(fadeStyle);
+    </script>
+</body>
+</html>
